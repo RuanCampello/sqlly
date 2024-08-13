@@ -21,8 +21,12 @@ impl SelectQuery {
         self
     }
     pub fn select(mut self, columns: &[&str]) -> Self {
-        self.columns
-            .extend(columns.iter().map(|&col| col.to_string()));
+        if columns.is_empty() {
+            self.columns.push("*".to_string());
+        } else {
+            self.columns
+                .extend(columns.iter().map(|&col| col.to_string()));
+        }
         self
     }
 
