@@ -1,10 +1,7 @@
 use super::select::SelectQuery;
 use super::update::UpdateQuery;
 
-pub enum Query {
-    Select(SelectQuery),
-    Update(UpdateQuery),
-}
+pub enum Query {}
 
 impl Query {
     pub fn select() -> SelectQuery {

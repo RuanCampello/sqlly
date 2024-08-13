@@ -12,7 +12,6 @@ impl UpdateQuery {
             conditions: Vec::new(),
         }
     }
-
     pub fn table(mut self, table: &str) -> Self {
         self.table = Some(table.to_string());
         self
@@ -21,7 +20,7 @@ impl UpdateQuery {
         self.updates.push(format!("{} = {}", column, value));
         self
     }
-    pub fn where_cond(mut self, condition: &str) -> Self {
+    pub fn at(mut self, condition: &str) -> Self {
         self.conditions.push(condition.to_string());
         self
     }
@@ -34,11 +33,10 @@ impl UpdateQuery {
         } else {
             panic!("Table name must be set")
         }
-
         if !self.conditions.is_empty() {
             query.push_str(&format!(" WHERE {}", self.conditions.join(" AND ")))
         }
-
+        query.push_str(";");
         query
     }
 }

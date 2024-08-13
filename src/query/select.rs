@@ -16,7 +16,7 @@ impl SelectQuery {
         self.table = Some(table.to_string());
         self
     }
-    pub fn where_condition(mut self, condition: &str) -> Self {
+    pub fn at(mut self, condition: &str) -> Self {
         self.conditions.push(condition.to_string());
         self
     }
@@ -39,11 +39,10 @@ impl SelectQuery {
             query.push_str("SELECT ");
             query.push_str(&self.columns.join(","));
         }
-
         if !self.conditions.is_empty() {
             query.push_str(&format!(" WHERE {}", self.conditions.join(" AND ")));
         }
-
+        query.push_str(";");
         query
     }
 }
