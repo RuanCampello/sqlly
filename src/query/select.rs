@@ -1,4 +1,3 @@
-// #[derive:Debug]
 pub struct SelectQuery {
     table: Option<String>,
     conditions: Vec<String>,
